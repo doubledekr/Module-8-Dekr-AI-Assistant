@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dekr AI Assistant - Financial Intelligence</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-info) 100%);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--bs-primary);
+            margin-bottom: 1rem;
+        }
+        .tier-card {
+            border: 2px solid var(--bs-border-color);
+            transition: all 0.3s ease;
+        }
+        .tier-card:hover {
+            border-color: var(--bs-primary);
+            transform: translateY(-2px);
+        }
+        .tier-card.featured {
+            border-color: var(--bs-primary);
+            background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.1) 0%, rgba(var(--bs-info-rgb), 0.1) 100%);
+        }
+        .testimonial-card {
+            border-left: 4px solid var(--bs-primary);
+            background: var(--bs-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-brain me-2"></i>
+                Dekr AI Assistant
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="/chat">
+                            <i class="fas fa-comments me-2"></i>
+                            Start Chat
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Your Intelligent Financial Assistant
+                    </h1>
+                    <p class="lead mb-4">
+                        Get personalized market insights, portfolio analysis, and financial education 
+                        powered by advanced AI and real-time data.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="/chat" class="btn btn-light btn-lg px-4 me-md-2">
+                            <i class="fas fa-rocket me-2"></i>
+                            Get Started Free
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Powerful Financial Intelligence</h2>
+                    <p class="lead">Comprehensive tools to help you make informed financial decisions</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-chart-line feature-icon"></i>
+                            <h4 class="card-title mb-3">Real-Time Market Analysis</h4>
+                            <p class="card-text">
+                                Get instant insights on market movements, stock performance, and economic indicators 
+                                with AI-powered analysis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-briefcase feature-icon"></i>
+                            <h4 class="card-title mb-3">Portfolio Optimization</h4>
+                            <p class="card-text">
+                                Analyze your portfolio performance, assess risk levels, and get personalized 
+                                recommendations for better returns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-graduation-cap feature-icon"></i>
+                            <h4 class="card-title mb-3">Financial Education</h4>
+                            <p class="card-text">
+                                Learn complex financial concepts through interactive conversations 
+                                tailored to your experience level.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-brain feature-icon"></i>
+                            <h4 class="card-title mb-3">AI-Powered Insights</h4>
+                            <p class="card-text">
+                                Leverage advanced AI to understand market trends, predict patterns, 
+                                and make data-driven decisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h4 class="card-title mb-3">Risk Management</h4>
+                            <p class="card-text">
+                                Assess and manage investment risks with comprehensive analysis 
+                                and personalized risk profiles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-clock feature-icon"></i>
+                            <h4 class="card-title mb-3">24/7 Availability</h4>
+                            <p class="card-text">
+                                Get financial assistance whenever you need it, with instant responses 
+                                and continuous market monitoring.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">Choose Your Plan</h2>
+                    <p class="lead">Flexible pricing to match your financial goals</p>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tier-card h-100">
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title mb-3">Freemium</h4>
+                            <div class="display-6 fw-bold mb-3">Free</div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>10 messages per day</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Basic market explanations</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Educational content</li>
+                                <li class="mb-2"><i class="fas fa-times text-danger me-2"></i>No voice features</li>
+                            </ul>
+                            <a href="/chat" class="btn btn-outline-primary">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tier-card featured h-100">
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title mb-3">
+                                Market Hours Pro
+                                <span class="badge bg-primary ms-2">Popular</span>
+                            </h4>
+                            <div class="display-6 fw-bold mb-3">$29/mo</div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>50 messages per day</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Portfolio analysis</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Strategy explanations</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Basic voice support</li>
+                            </ul>
+                            <a href="/chat" class="btn btn-primary">Start Free Trial</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="card tier-card h-100">
+                        <div class="card-body text-center p-4">
+                            <h4 class="card-title mb-3">Premium</h4>
+                            <div class="display-6 fw-bold mb-3">$99/mo</div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Unlimited messages</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Advanced insights</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom recommendations</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Full voice capabilities</li>
+                            </ul>
+                            <a href="/chat" class="btn btn-outline-primary">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-4">About Dekr AI Assistant</h2>
+                    <p class="lead mb-4">
+                        Dekr AI Assistant combines cutting-edge artificial intelligence with comprehensive 
+                        financial expertise to provide you with intelligent, personalized financial guidance.
+                    </p>
+                    <p class="mb-4">
+                        Our AI is trained on vast amounts of financial data and market analysis, 
+                        enabling it to provide insights that are both accurate and actionable. 
+                        Whether you're a beginner learning about investing or an experienced trader 
+                        looking for advanced analysis, our assistant adapts to your needs.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-users text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-0">10,000+</h6>
+                                    <small class="text-muted">Active Users</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-comments text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-0">1M+</h6>
+                                    <small class="text-muted">Conversations</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-chart-line text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-0">99.9%</h6>
+                                    <small class="text-muted">Uptime</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-star text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-0">4.9/5</h6>
+                                    <small class="text-muted">User Rating</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="card testimonial-card">
+                                <div class="card-body">
+                                    <p class="mb-3">"Dekr AI Assistant has completely transformed how I approach investing. The insights are incredibly valuable and easy to understand."</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-user-circle text-primary fs-2"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">Sarah Johnson</h6>
+                                            <small class="text-muted">Portfolio Manager</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card testimonial-card">
+                                <div class="card-body">
+                                    <p class="mb-3">"As a beginner, I found the educational features particularly helpful. The AI explains complex concepts in simple terms."</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-user-circle text-primary fs-2"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">Mike Chen</h6>
+                                            <small class="text-muted">New Investor</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">
+                        <i class="fas fa-brain me-2"></i>
+                        Dekr AI Assistant
+                    </h5>
+                    <p class="mb-0">
+                        Intelligent financial guidance powered by advanced AI technology.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        &copy; 2024 Dekr AI Assistant. All rights reserved.
+                    </p>
+                    <div class="mt-2">
+                        <a href="#" class="text-light me-3">Privacy Policy</a>
+                        <a href="#" class="text-light me-3">Terms of Service</a>
+                        <a href="#" class="text-light">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

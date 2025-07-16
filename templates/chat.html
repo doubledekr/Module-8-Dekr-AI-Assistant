@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dekr AI Assistant - Chat</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/chat.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="fas fa-brain me-2"></i>
+                Dekr AI Assistant
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user me-2"></i>
+                        <span id="userTierDisplay">Freemium</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="showUsageStats()">
+                            <i class="fas fa-chart-bar me-2"></i>Usage Stats
+                        </a></li>
+                        <li><a class="dropdown-item" href="#" onclick="clearChat()">
+                            <i class="fas fa-trash me-2"></i>Clear Chat
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/">
+                            <i class="fas fa-home me-2"></i>Home
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 bg-dark border-end p-0">
+                <div class="sidebar">
+                    <div class="p-3 border-bottom">
+                        <h6 class="text-light mb-3">Quick Actions</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm" onclick="showSuggestions()">
+                                <i class="fas fa-lightbulb me-2"></i>
+                                Get Suggestions
+                            </button>
+                            <button class="btn btn-outline-info btn-sm" onclick="showMarketOverview()">
+                                <i class="fas fa-chart-line me-2"></i>
+                                Market Overview
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 border-bottom">
+                        <h6 class="text-light mb-3">Usage Today</h6>
+                        <div class="usage-stats">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small class="text-muted">Messages</small>
+                                <small id="messageCount">0/10</small>
+                            </div>
+                            <div class="progress" style="height: 4px;">
+                                <div id="usageProgress" class="progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3">
+                        <h6 class="text-light mb-3">Recent Topics</h6>
+                        <div id="recentTopics" class="recent-topics">
+                            <small class="text-muted">No recent conversations</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="col-md-9 col-lg-10 d-flex flex-column">
+                <!-- Chat Header -->
+                <div class="chat-header p-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-0">
+                                <i class="fas fa-robot text-primary me-2"></i>
+                                AI Financial Assistant
+                            </h5>
+                            <small class="text-muted">
+                                <span id="statusIndicator" class="status-indicator online"></span>
+                                Online • Ready to help
+                            </small>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn btn-outline-secondary btn-sm me-2" onclick="exportChat()">
+                                <i class="fas fa-download me-1"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages flex-grow-1 p-3" id="chatMessages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                <p>Hello! I'm your Dekr AI Assistant. I'm here to help you with:</p>
+                                <ul class="mb-0">
+                                    <li>Market analysis and insights</li>
+                                    <li>Portfolio optimization</li>
+                                    <li>Financial education</li>
+                                    <li>Investment strategies</li>
+                                </ul>
+                                <p class="mt-2 mb-0">What would you like to know about today?</p>
+                            </div>
+                            <div class="message-time">
+                                <small class="text-muted">Just now</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input p-3 border-top">
+                    <form id="messageForm" class="d-flex gap-2">
+                        <div class="flex-grow-1">
+                            <div class="input-group">
+                                <textarea 
+                                    id="messageInput" 
+                                    class="form-control" 
+                                    rows="1" 
+                                    placeholder="Ask me anything about finance, markets, or investments..."
+                                    maxlength="5000"
+                                    required
+                                ></textarea>
+                                <button class="btn btn-outline-secondary" type="button" onclick="showInputOptions()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="input-feedback mt-1">
+                                <small class="text-muted">
+                                    <span id="charCount">0</span>/5000 characters
+                                </small>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="sendButton">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suggestions Modal -->
+    <div class="modal fade" id="suggestionsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        Suggested Questions
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="suggestionsContent">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading suggestions...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Stats Modal -->
+    <div class="modal fade" id="usageModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Usage Statistics
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="usageStatsContent">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading usage statistics...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="loading-indicator">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Processing...</span>
+        </div>
+        <p class="mt-2">AI is thinking...</p>
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" class="alert-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
