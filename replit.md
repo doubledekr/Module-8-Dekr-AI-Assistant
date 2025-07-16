@@ -7,6 +7,7 @@ Dekr AI Assistant is a sophisticated financial AI chat application built with Fl
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Tool behavior: Must be conversational regardless of user tier (July 16, 2025).
 
 ## System Architecture
 

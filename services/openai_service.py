@@ -3,7 +3,7 @@ import json
 import logging
 from openai import OpenAI
 from typing import Dict, List, Any
-from utils.prompts import get_financial_assistant_prompt, get_educational_prompt, get_portfolio_analysis_prompt
+from utils.prompts import get_financial_assistant_prompt, get_educational_prompt, get_portfolio_analysis_prompt, get_market_interpretation_prompt
 
 # The newest OpenAI model is "gpt-4o" which was released May 13, 2024.
 # Do not change this unless explicitly requested by the user
@@ -28,7 +28,7 @@ class OpenAIService:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_message}
                 ],
-                temperature=0.7,
+                temperature=0.8,  # Higher temperature for more conversational responses
                 max_tokens=1000
             )
             
@@ -56,7 +56,7 @@ class OpenAIService:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.6,
+                temperature=0.8,  # Higher temperature for more conversational responses
                 max_tokens=1200
             )
             
@@ -85,7 +85,7 @@ class OpenAIService:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_message}
                 ],
-                temperature=0.5,
+                temperature=0.8,  # Higher temperature for more conversational responses
                 max_tokens=1000
             )
             
@@ -105,19 +105,7 @@ class OpenAIService:
     async def get_market_interpretation(self, market_data: Dict[str, Any], user_query: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """Interpret market data based on user query"""
         try:
-            system_prompt = f"""You are a financial AI assistant specializing in market data interpretation.
-            
-            Current market data: {json.dumps(market_data, indent=2)}
-            
-            User context: {json.dumps(context, indent=2)}
-            
-            Provide clear, actionable insights about the market data. Be specific about:
-            1. What the data shows
-            2. Potential implications
-            3. Relevant context for the user's situation
-            4. Any important trends or patterns
-            
-            Keep responses concise but informative. Avoid giving specific investment advice."""
+            system_prompt = get_market_interpretation_prompt(market_data)
             
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -125,7 +113,7 @@ class OpenAIService:
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_query}
                 ],
-                temperature=0.6,
+                temperature=0.8,  # Higher temperature for more conversational responses
                 max_tokens=800
             )
             
